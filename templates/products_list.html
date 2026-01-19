@@ -1,0 +1,20 @@
+{{ define "content" }}
+{{ if not .Products }}
+  <div class="alert alert-info">Welcome to our test store. Currently there are no products yet in the store.</div>
+{{ else }}
+<h1>Check out our products!</h1>
+<div class="product-list">
+{{ range .Products }}  
+<li class="product">
+    <a href="/product/slug=product.slug %}">
+      {{ .Name }}
+      {{ .Model }}
+      {{ .Year }}
+      {{ .Price }}
+      {{ .ImageURL }}
+    </a>
+</li>
+</div>
+{{ end }}
+{{ end }}
+{{ end }}

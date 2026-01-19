@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+    padding-top: 100px;
+}
+
+p {
+    text-align: center;
+}
+
+.product-image {
+    width: 500px;
+    height: 300px;
+}
+
+.product {
+    width: 500px;
+    margin-right: 50px;
+    border: 1px solid red;
+    list-style-type: none;
+}
+
+.product-list {
+    justify-content: center;
+    display: flex;
+}
+
+.footer-context-links {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.copyright-content {
+    padding-right: 50px;
+}
+
+.single-product {
+    justify-content: center;
+    display: flex;
+}
+
+.product-info {
+    justify-content: center;
+    display: flex;
+}
