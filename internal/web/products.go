@@ -12,15 +12,29 @@ type ProductsPageData struct {
 	Products  []models.Product
 }
 
-func ShowProducts(w http.ResponseWriter, r *http.Request) {
+func (h *ProductsHandler) ShowProducts(w http.ResponseWriter, r *http.Request) {
+	stmt := "SELECT id, title, description, quantity,  image_url, price FROM products ORDER BY id DESC"
+	rows, err := h.DB.Query(stmt)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	cars := []models.Product{}
+	for rows.Next() {
+		car := models.Product{}
+		err := rows.Scan(&car.ID, &car.Title, &car.Description, &car.Quantity, &car.ImageURL, &car.Price)
+		if err != nil {
+			http.Error(w, err.Error(), 500)
+		}
+		cars = append(cars, car)
+
+	}
+
 	data := ProductsPageData{
 		Title:     "Products",
 		CartCount: "0",
-		Products: []models.Product{
-			{ID: 1, Name: "Nissan", Model: "Leaf", Year: 2013, Price: "5000", ImageURL: "URL"},
-			{ID: 2, Name: "BMW", Model: "E60", Year: 2007, Price: "3000", ImageURL: "URL"},
-			{ID: 3, Name: "Nissan", Model: "Leaf", Year: 2021, Price: "11500", ImageURL: "URL"},
-		},
+		Products:  cars,
 	}
 
 	tmpl, err := template.ParseFiles(

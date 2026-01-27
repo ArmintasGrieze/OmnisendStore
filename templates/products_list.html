@@ -7,11 +7,11 @@
 {{ range .Products }}  
 <li class="product">
     <a href="/product/slug=product.slug %}">
-      {{ .Name }}
-      {{ .Model }}
-      {{ .Year }}
-      {{ .Price }}
+      {{ .Title }}
+      {{ .Description }}
+      {{ .Quantity }}
       {{ .ImageURL }}
+      {{ .Price }}
     </a>
 </li>
 </div>
