@@ -1,0 +1,11 @@
+{{ define "base" }}
+<h1>Delete product</h1>
+
+<p>Are you sure you want to delete:</p>
+<p><strong>{{ .Title }}</strong> (ID: {{ .ID }})</p>
+
+<form method="POST" action="/admin/products/delete?id={{ .ID }}">
+  <button type="submit">Yes, delete</button>
+  <a href="/admin/products">Cancel</a>
+</form>
+{{ end }}

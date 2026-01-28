@@ -26,21 +26,24 @@ func (h *ProductsHandler) ShowProducts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cars := []models.Product{}
+	defer rows.Close()
+
+	products := []models.Product{}
 	for rows.Next() {
 		car := models.Product{}
 		err := rows.Scan(&car.ID, &car.Title, &car.Description, &car.Quantity, &car.ImageURL, &car.Price)
 		if err != nil {
 			http.Error(w, err.Error(), 500)
+			return
 		}
-		cars = append(cars, car)
+		products = append(products, car)
 
 	}
 
 	data := ProductsPageData{
 		Title:     "Products",
 		CartCount: "0",
-		Products:  cars,
+		Products:  products,
 	}
 
 	tmpl, err := template.ParseFiles(
