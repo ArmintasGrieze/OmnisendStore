@@ -28,6 +28,13 @@ func main() {
 	mux.HandleFunc("/", web.ShowHomepage)
 	mux.HandleFunc("/products", h.ShowProducts)
 	mux.HandleFunc("/about", web.ShowAbout)
+<<<<<<< Updated upstream
+=======
+	mux.HandleFunc("/admin/products", auth.Require(h.AdminShowProducts))
+	mux.HandleFunc("/admin/products/edit", auth.Require(h.AdminShowEditProduct))
+	mux.HandleFunc("/admin/products/new", auth.Require(h.AdminShowCreateProduct))
+	mux.HandleFunc("/admin/products/delete", auth.Require(h.AdminShowDeleteProduct))
+>>>>>>> Stashed changes
 
 	err = http.ListenAndServe(":"+cfg.Port, mux)
 	if err != nil {

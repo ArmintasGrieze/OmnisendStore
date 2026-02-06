@@ -18,10 +18,10 @@ func Load() (Config, error) {
 	c := Config{
 		Port:            os.Getenv("PORT"),
 		DBPath:          os.Getenv("DB_PATH"),
-		OmnisendAPIKey:  os.Getenv("OMNISEND_API_KEY"),
+		OmnisendAPIKey:  "test", //os.Getenv("OMNISEND_API_KEY"),
 		OmnisendSnippet: os.Getenv("OMNISEND_SNIPPET"),
-		AdminUser:       os.Getenv("ADMIN_USER"),
-		AdminPass:       os.Getenv("ADMIN_PASS"),
+		AdminUser:       "test", //os.Getenv("ADMIN_USER"),
+		AdminPass:       "test", //os.Getenv("ADMIN_PASS"),
 	}
 
 	if c.Port == "" {

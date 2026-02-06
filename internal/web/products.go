@@ -12,6 +12,12 @@ type ProductsPageData struct {
 	Products  []models.Product
 }
 
+type ProductPageData struct {
+	Title     string
+	CartCount string
+	Product   models.Product
+}
+
 func (h *ProductsHandler) ShowProducts(w http.ResponseWriter, r *http.Request) {
 	stmt := "SELECT id, title, description, quantity,  image_url, price FROM products ORDER BY id DESC"
 	rows, err := h.DB.Query(stmt)

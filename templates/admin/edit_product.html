@@ -1,0 +1,48 @@
+{{ define "content" }}
+<h1>Edit product</h1>
+
+<form method="POST" action="/admin/products/edit?id={{ .Product.ID }}">
+  <p>
+    <label for="title">Title</label><br>
+    <input id="title" name="title" value="{{ .Product.Title }}" required>
+  </p>
+
+  <p>
+    <label for="description">Description</label><br>
+    <textarea id="description" name="description" rows="6">{{ .Product.Description }}</textarea>
+  </p>
+
+  <p>
+    <label for="quantity">Quantity</label><br>
+    <input id="quantity" name="quantity" type="number" min="0" value="{{ .Product.Quantity }}" required>
+  </p>
+
+  <p>
+    <label for="price">Price</label><br>
+    <input id="price" name="price" type="number" min="0" value="{{ .Product.Price }}" required>
+  </p>
+
+  <p>
+    <label for="image_url">Image URL</label><br>
+    <input id="image_url" name="image_url" type="url" value="{{ .Product.ImageURL }}">
+  </p>
+
+  <p>
+    <button type="submit">Save</button>
+    <a href="/admin/products">Cancel</a>
+    |
+    <a href="/admin/products/delete?id={{ .Product.ID }}">Delete</a>
+  </p>
+</form>
+
+<hr>
+
+<p>
+  <strong>Preview</strong><br>
+  {{ .Product.Title }}<br>
+  {{ .Product.Description }}<br>
+  Qty: {{ .Product.Quantity }}<br>
+  Price: {{ .Product.Price }}<br>
+  {{ .Product.ImageURL }}
+</p>
+{{ end }}
